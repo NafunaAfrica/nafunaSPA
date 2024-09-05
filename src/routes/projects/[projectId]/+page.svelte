@@ -23,7 +23,7 @@
     <h1 class="font-black text-4xl">{data.project.title}</h1>
     <p class=" text-xs prose prose-sm font-medium w-72">{@html data.project.description}</p>
     
-    <img src="https://api.nafuna.tv/api/files/projects/{data.project.id}/{data.project.headerImg}" alt="Header Image" class="p-5 rounded"/>
+    <img src="https://api.nafuna.tv/api/files/projects/{data.project.id}/{data.project.headerImg}" alt="Header" class="p-5 rounded"/>
     <div class="rounded-lg overflow-hidden">
       <p class="prose prose-sm">{@html data.project.Content}</p>
     </div>
