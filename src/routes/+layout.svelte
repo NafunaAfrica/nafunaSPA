@@ -1,5 +1,31 @@
 <script>
+	// Critical imports for Nafuna App 
 	import '../app.css';
+	import Navbar from '$lib/components/Navbar.svelte';
+
+	// Icons for Dark mode 
+	import Sun from "lucide-svelte/icons/sun";
+	import Moon from "lucide-svelte/icons/moon";
+	
+	// Fonts and darkmode 
+	import { toggleMode } from "mode-watcher";
+	import { ModeWatcher } from "mode-watcher";
+	import '@fontsource-variable/quicksand';
+
+	// ShadCN imports 
+	import { Button } from "$lib/components/ui/button/index";
 </script>
 
-<slot></slot>
+<div class="h-full">
+	<div class="h-[80px] absolute inset-y-0 w-full z-50">
+<Navbar />
+	</div>
+	<!--  -->
+</div>
+
+
+<main class="h-full">
+	<ModeWatcher />
+	<slot></slot>
+</main>
+
