@@ -69,23 +69,3 @@
     </div>
     </div>
 
-
-<style>
-  ul a,
-  .dropdown-menu-trigger {
-    @apply text-sm px-4 py-2 rounded-md transition-colors;
-  }
-
-  ul a:hover,
-  .dropdown-menu-trigger:hover {
-    @apply bg-gray-100;
-  }
-
-  .dropdown-menu-trigger svg {
-    @apply h-4 w-4 transition-transform;
-  }
-
-  .dropdown-menu[data-state="open"] .dropdown-menu-trigger svg {
-    @apply rotate-180;
-  }
-</style>
