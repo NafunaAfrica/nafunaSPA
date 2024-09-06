@@ -3,9 +3,9 @@
     // import ProjectGrid from '$lib/components/ProjectGrid.svelte';
     import HeroSection from "$lib/components/Hero.svelte";
     import ProjectGrid from "$lib/components/ProjectGrid.svelte";
-    // import AboutUs from "$lib/components/Aboutus.svelte";
+    import AboutUs from "$lib/components/Aboutus.svelte";
     // import Benefits from "$lib/components/Benefits.svelte";
-    // import Contact from "$lib/components/ContactForm.svelte";
+    import Contact from "$lib/components/ContactForm.svelte";
   
   
   
@@ -71,6 +71,7 @@
     }
   </script>
 
+<!-- Hero section  -->
 <section>
   {#if herocontent.title}
   <div>
@@ -80,11 +81,28 @@
   {/if}
 </section>
 
+<!-- Project grid section  -->
+
 <section>
   <div class="container mx-auto px-4 py-8">
     <ProjectGrid {projects} />
   </div>
   
+</section>
+
+<!-- Anout us section  -->
+
+<section class="container mx-auto px-4 py-8">
+  {#if data.aboutpage}
+    <AboutUs aboutcontent={data.aboutpage} />
+  {/if}
+</section>
+
+<section>
+
+  <div>
+    <Contact {data}  on:submit={handleSubmit}/>
+  </div>
 </section>
 
 

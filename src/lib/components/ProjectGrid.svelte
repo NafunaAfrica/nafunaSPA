@@ -3,8 +3,8 @@
     export let projects;
   </script>
   <div class="flex flex-col items-center justify-center">
-    <h1 class="h1 font-bold text-4xl">Services</h1>
-    <p class="text-grey-500 text-lg">Videos guided by our experience!</p>
+    <h1 class="h1 font-bold text-4xl">Check out our work!</h1>
+    <p class="text-grey-500 text-lg">Browse through our different projects!</p>
   </div>
   <div class="grid grid-cols-3 gap-4 p-5 items-center justify-center">
     {#each projects as project}
