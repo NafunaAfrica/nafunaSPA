@@ -1,6 +1,6 @@
 <script lang="ts">
     // import { enhance } from '$app/forms';
-    // import ProjectGrid from '$lib/components/ProjectGrid.svelte';
+    import BlogGrid from "$lib/components/BlogGrid.svelte";
     import HeroSection from "$lib/components/Hero.svelte";
     import ProjectGrid from "$lib/components/ProjectGrid.svelte";
     import AboutUs from "$lib/components/Aboutus.svelte";
@@ -27,6 +27,7 @@
   
     export let data;
     console.log('Data in +page.svelte:', data);
+    console.log('Blogs in +page.svelte:', data.blogs);
     
     console.log('Data received in +page.svelte:', JSON.stringify(data, null, 2));
   console.log('data.form:', data.form);
@@ -43,9 +44,11 @@
   // });
   // const { form: formData, errors, enhance } = form;
   
-      let projects = data.projects || [];
+    let projects = data.projects || [];
     let herocontent = data.homepage ?? { title: '', description: '', coverimg: '' };
     let aboutcontent = data.aboutpage ?? { title: '', content: '', content_alt: '' };
+    let blogs = data.blogs || [];
+    console.log('Blogs after assignment:', blogs);
   
   
   
@@ -74,7 +77,7 @@
 <!-- Hero section  -->
 <section>
   {#if herocontent.title}
-  <div>
+  <div class="min-h-screen ">
     <HeroSection {herocontent} />
   </div>
     
@@ -100,9 +103,18 @@
 
 <section>
 
+  <div class="container mx-auto px-4 py-8">
+    <BlogGrid {blogs}/>
+  </div>
+</section>
+
+<section>
+
   <div>
     <Contact {data}  on:submit={handleSubmit}/>
   </div>
 </section>
+
+
 
 

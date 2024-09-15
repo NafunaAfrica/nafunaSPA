@@ -9,6 +9,8 @@ export const load = async ({ locals }) => {
         console.log('AdminPb auth status:', adminPb.authStore.isValid);
 
         const projects = await adminPb.collection('projects').getFullList();
+        const blogs = await adminPb.collection('articles').getFullList();
+        console.log('Fetched blogs:', blogs); // Add this line
         const homepages = await adminPb.collection('pages').getOne('home-page-infos', {
             expand: 'relField1,relField2.subRelField',
         });
@@ -30,6 +32,14 @@ export const load = async ({ locals }) => {
                 headerImg: project.headerImg,
                 Content: project.content
             })),
+            blogs: blogs.map(blog => ({
+              id: blog.id,
+              title: blog.title,
+              description: blog.description,
+              coverimg: blog.coverimg,
+             
+              Content: blog.content
+          })),
             homepage: homepages ? {
                 title: homepages.title,
                 description: homepages.description,
@@ -44,14 +54,21 @@ export const load = async ({ locals }) => {
             } : null,
         };
 
-        console.log('Full result object:', JSON.stringify(result, null, 2));
-        return result;
-    } catch (err) {
-        console.error('Error in load function:', err);
-        throw error(500, 'Failed to fetch data');
-    }
-};
+//         console.log('Full result object:', JSON.stringify(result, null, 2));
+//         return result;
+//     } catch (err) {
+//         console.error('Error in load function:', err);
+//         throw error(500, 'Failed to fetch data');
+//     }
+// };
 
+console.log('Mapped blogs in result:', result.blogs); // Add this line
+return result;
+} catch (err) {
+console.error('Error in load function:', err);
+throw error(500, 'Failed to fetch data');
+}
+};
 
 
 // export const actions = {

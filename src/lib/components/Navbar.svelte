@@ -8,6 +8,12 @@
 </script>
 
 <div class="p-4 h-full flex items-center bg-transparent">
-    <MobileSidebar></MobileSidebar>
-    <NavbarRoutes />
-</div>
+    <!-- Show MobileSidebar only on small screens -->
+    <div class="md:hidden">
+      <MobileSidebar />
+    </div>
+    <!-- Show NavbarRoutes only on medium and larger screens -->
+    <div class="hidden md:flex flex-1">
+      <NavbarRoutes />
+    </div>
+  </div>

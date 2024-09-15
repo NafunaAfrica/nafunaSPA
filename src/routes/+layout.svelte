@@ -2,6 +2,7 @@
 	// Critical imports for Nafuna App 
 	import '../app.css';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	// Icons for Dark mode 
 	import Sun from "lucide-svelte/icons/sun";
@@ -24,8 +25,12 @@
 </div>
 
 
-<main class="h-full">
+<main class="h-full gap-5">
 	<ModeWatcher />
 	<slot></slot>
 </main>
+
+<div class="gap-5 p-5">
+	<Footer />
+</div>
 
