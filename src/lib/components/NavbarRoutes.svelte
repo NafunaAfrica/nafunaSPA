@@ -38,7 +38,7 @@
     <ul class="flex justify-end items-center space-x-4 p-5">
       <li><a href="/" class="text-sm text-white hover:text-black transition-colors font-quicksand">Home</a></li>
       <!-- <li><a href="/campus" class="text-white hover:text-black">Campus</a></li> -->
-      <li><a href="/blog" class="text-white hover:text-black">Blog</a></li>
+      <li><a href="/blogs" class="text-white hover:text-black">Blog</a></li>
       <li>
         <Button href="/hire-us" class="px-4 py-2 rounded-md text-white bg-orange-500 hover:bg-orange-400 transition-colors">
           Hire Us

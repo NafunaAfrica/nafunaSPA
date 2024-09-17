@@ -11,16 +11,22 @@
   export let data;
   let formSubmitted = false;
   const form = superForm(data.form, {
-    validators: zodClient(feedback)
+    validators: zodClient(feedback),
+    id: 'contact-form' // Ensure unique form ID
   });
 
-  const { form: formData, errors, enhance, delayed, message } = superForm(data.form);
+  const { form: formData, errors, enhance, delayed, message } = form;
   let formState = 'idle'; // 'idle', 'submitting', 'success', 'error'
 
   function handleSubmit() {
-    return ({ result }) => {
+    return async ({ result }) => {
+      console.log('Form submission result:', result); // Add this line for debugging
       if (result.type === 'success') {
+        console.log('Form submitted successfully, showing overlay...');
         formSubmitted = true;
+      } else {
+        formState = 'error';
+        console.error('Form submission error:', result);
       }
     };
   }
@@ -32,7 +38,26 @@
   $: selectedProduct = $formData.Product 
     ? { value: $formData.Product, label: $formData.Product } 
     : undefined;  
+
+  $: console.log('Form data:', $formData);
+  $: console.log('Form errors:', errors);
 </script>
+
+<style>
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1000;
+  }
+</style>
 
 <div class="flex flex-col md:flex-row gap-10 p-10 container mx-auto bg-muted rounded bg-sky-700">
   <!-- Left Column with different background color -->
@@ -45,7 +70,15 @@
   </div>
 
   <!-- Right Column with the form -->
-  <div class="flex-1">
+  <div class="flex-1 relative">
+    {#if formSubmitted}
+      <div class="overlay">
+        <div class="success-message">
+          <h2>Thank you for your submission!</h2>
+          <p>We'll get back to you soon.</p>
+        </div>
+      </div>
+    {/if}
     {#if !formSubmitted}
       <form method="POST" action="?/feedback" use:enhance={handleSubmit}>
         <Form.Field {form} name="fullname">
@@ -142,11 +175,6 @@
           {$delayed ? 'Submitting...' : 'Submit'}
         </Button>
       </form>
-    {:else}
-      <div class="success-message">
-        <h2>Thank you for your submission!</h2>
-        <p>We'll get back to you soon.</p>
-      </div>
     {/if}
   </div>
 </div>

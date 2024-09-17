@@ -10,7 +10,7 @@ export const load = async ({ locals }) => {
 
         const projects = await adminPb.collection('projects').getFullList();
         const blogs = await adminPb.collection('articles').getFullList();
-        console.log('Fetched blogs:', blogs); // Add this line
+        console.log('Fetched blogs:', blogs);
         const homepages = await adminPb.collection('pages').getOne('home-page-infos', {
             expand: 'relField1,relField2.subRelField',
         });
@@ -37,7 +37,6 @@ export const load = async ({ locals }) => {
               title: blog.title,
               description: blog.description,
               coverimg: blog.coverimg,
-             
               Content: blog.content
           })),
             homepage: homepages ? {
@@ -54,96 +53,34 @@ export const load = async ({ locals }) => {
             } : null,
         };
 
-//         console.log('Full result object:', JSON.stringify(result, null, 2));
-//         return result;
-//     } catch (err) {
-//         console.error('Error in load function:', err);
-//         throw error(500, 'Failed to fetch data');
-//     }
-// };
-
-console.log('Mapped blogs in result:', result.blogs); // Add this line
-return result;
-} catch (err) {
-console.error('Error in load function:', err);
-throw error(500, 'Failed to fetch data');
-}
+        console.log('Mapped blogs in result:', result.blogs);
+        return result;
+    } catch (err) {
+        console.error('Error in load function:', err);
+        throw error(500, 'Failed to fetch data');
+    }
 };
 
-
-// export const actions = {
-//   feedback: async (event) => {
-//     const form = await superValidate(event, feedback);
-
-//     if (!form.valid) {
-//       return fail(400, { form });
-//     }
-
-//     try {
-//       const formData = form.data;
-//       const result = await event.locals.adminPb.collection('ContactUs').create(formData);
-//       console.log('Record created successfully:', result);
-
-//       return {
-//         status: 200,
-//         body: { message: 'Form submitted successfully!' },
-//       };
-//     } catch (error) {
-//       console.error('Error submitting to Pocketbase:', error);
-//       return fail(500, { message: 'Failed to submit form' });
-//     }
-//   },
-// };
-
-
-// export const actions: Actions = {
-//     feedback: async (event) => {
-//       const form = await superValidate(event, feedback);
-  
-//       if (!form.valid) {
-//         return fail(400, { form });
-//       }
-  
-//       try {
-//         const formData = form.data;
-//         const result = await event.locals.adminPb.collection('ContactUs').create(formData);
-//         console.log('Record created successfully:', result);
-  
-//         return {
-//           status: 200,
-//           body: {
-//             message: 'Form submitted successfully!',
-//             ...formData, 
-//           },
-//         };
-//       } catch (error) {
-//         console.error('Error submitting to Pocketbase:', error);
-//         return fail(500, { message: 'Failed to submit form' });
-//       }
-//     },
-//   };
-
-  export const actions: Actions = {
+export const actions = {
     feedback: async (event) => {
-      const form = await superValidate(event, zod(feedback));
-  
-      if (!form.valid) {
-        return fail(400, { form });
-      }
-  
-      try {
-        console.log('Form data before submission:', form.data);
+        const form = await superValidate(event, zod(feedback));
 
-        const result = await event.locals.adminPb.collection('ContactUs').create(form.data);
-        console.log('Record created successfully:', result);
-  
-        return { form };
-      } catch (error) {
-        console.error('Error submitting to Pocketbase:', error);
-        return fail(500, { form, message: 'Failed to submit form' });
-      }
+        if (!form.valid) {
+            console.log('Form validation failed:', form.errors);
+            return fail(400, { form });
+        }
+
+        try {
+            console.log('Form data before submission:', form.data);
+
+            const result = await event.locals.adminPb.collection('ContactUs').create(form.data);
+            console.log('Record created successfully:', result);
+
+            return { form, success: true }; // Indicate success
+        } catch (error) {
+            console.error('Error submitting to Pocketbase:', error);
+            return fail(500, { form, message: 'Failed to submit form' });
+        }
     },
-  };
+};
 
-  
-  
