@@ -20,7 +20,7 @@
 
   function handleSubmit() {
     return async ({ result }) => {
-      console.log('Form submission result:', result);
+      console.log('Form submission result:', result); // Add this line for debugging
       if (result.type === 'success') {
         console.log('Form submitted successfully, showing overlay...');
         formSubmitted = true;
@@ -29,7 +29,9 @@
         console.error('Form submission error:', result);
       }
     };
-  }  $: selectedBudget = $formData.Budget 
+  }
+
+  $: selectedBudget = $formData.Budget 
     ? { value: $formData.Budget, label: $formData.Budget } 
     : undefined;  
 
@@ -41,7 +43,21 @@
   $: console.log('Form errors:', errors);
 </script>
 
-
+<style>
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1000;
+  }
+</style>
 
 <div class="flex flex-col md:flex-row gap-10 p-10 container mx-auto bg-muted rounded bg-sky-700">
   <!-- Left Column with different background color -->
@@ -56,13 +72,12 @@
   <!-- Right Column with the form -->
   <div class="flex-1 relative">
     {#if formSubmitted}
-    {console.log('Rendering success overlay')}
-    <div class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-      <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-        <h2 class="text-2xl font-bold mb-4">Thank you for your submission!</h2>
-        <p class="text-lg">We'll get back to you soon.</p>
+      <div class="overlay">
+        <div class="success-message">
+          <h2>Thank you for your submission!</h2>
+          <p>We'll get back to you soon.</p>
+        </div>
       </div>
-    </div>
     {/if}
     {#if !formSubmitted}
       <form method="POST" action="?/feedback" use:enhance={handleSubmit}>
