@@ -9,27 +9,24 @@
   import * as Select from "$lib/components/ui/select";
 
   export let data;
-  let formSubmitted = false;
+  let formState = 'idle'; // 'idle', 'submitting', 'success', 'error'
   const form = superForm(data.form, {
     validators: zodClient(feedback),
     id: 'contact-form' // Ensure unique form ID
   });
 
   const { form: formData, errors, enhance, delayed, message } = form;
-  let formState = 'idle'; // 'idle', 'submitting', 'success', 'error'
 
-  function handleSubmit() {
-    return async ({ result }) => {
-      console.log('Form submission result:', result);
-      if (result.type === 'success') {
-        console.log('Form submitted successfully, showing overlay...');
-        formSubmitted = true;
-      } else {
-        formState = 'error';
-        console.error('Form submission error:', result);
-      }
-    };
-  }  $: selectedBudget = $formData.Budget 
+  async function handleSubmit({ result }) {
+    console.log('Form submission result:', result);
+    if (result.type === 'success') {
+      formState = 'success';
+    } else {
+      formState = 'error';
+    }
+  }
+
+  $: selectedBudget = $formData.Budget 
     ? { value: $formData.Budget, label: $formData.Budget } 
     : undefined;  
 
@@ -41,8 +38,6 @@
   $: console.log('Form errors:', errors);
 </script>
 
-
-
 <div class="flex flex-col md:flex-row gap-10 p-10 container mx-auto bg-muted rounded bg-sky-700">
   <!-- Left Column with different background color -->
   <div class="flex bg-primary-foreground p-5 flex flex-col justify-center rounded">
@@ -52,19 +47,28 @@
       Whastapp platform. You can also use our contact center to the lower left to speak to a representative. 
     </p>
   </div>
+{#if formState === 'success'}
+  <div class="success-message">
+    Form submitted successfully!
+  </div>
+{/if}
 
+{#if formState === 'submitting'}
+  <div class="loading-indicator">
+    Submitting...
+  </div>
+{/if}
   <!-- Right Column with the form -->
   <div class="flex-1 relative">
-    {#if formSubmitted}
-    {console.log('Rendering success overlay')}
-    <div class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-      <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-        <h2 class="text-2xl font-bold mb-4">Thank you for your submission!</h2>
-        <p class="text-lg">We'll get back to you soon.</p>
+    {#if formState === 'success'}
+      <div class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+          <h2 class="text-2xl font-bold mb-4">Thank you for your submission!</h2>
+          <p class="text-lg">We'll get back to you soon.</p>
+        </div>
       </div>
-    </div>
     {/if}
-    {#if !formSubmitted}
+    {#if formState !== 'success'}
       <form method="POST" action="?/feedback" use:enhance={handleSubmit}>
         <Form.Field {form} name="fullname">
           <Form.Control let:attrs>
@@ -163,4 +167,3 @@
     {/if}
   </div>
 </div>
-
