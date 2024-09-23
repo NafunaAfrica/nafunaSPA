@@ -4,7 +4,7 @@
   import { Button } from "$lib/components/ui/button";
   import BlogGrid from "$lib/components/BlogGrid.svelte";
   export let data;
-  
+  import SEO from '$lib/components/SEO.svelte';
   console.log('Data received in +page.svelte:', JSON.stringify(data, null, 2));
   
   let blogs = [];
@@ -17,16 +17,24 @@
     console.error('Error: data.blogs is not an array:', data);
   }
 </script>
+<SEO 
+  title="Nafuna - Creative Studio"
+  description="Nafuna is a creative animation studio in Zimbabwe specializing in video production, game development and animation."
+  keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+  image="/nfa_og.png"
+  url="https://nafuna.tv"
+/>
+
 <div >
   <Headergen />
 </div>
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center p-5">
   <h1 class="h1 font-bold text-4xl">Check out our Blog!</h1>
   <p class="text-grey-500 text-lg">Browse through our different articles!</p>
 </div>
 
 {#if blogs && blogs.length > 0}
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-5 items-center justify-center">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-10 items-center justify-center mx-auto container">
     {#each blogs as blog}
       {#if blog && blog.id && blog.title}
         <a href={`/blogs/${blog.id}`} class="block">

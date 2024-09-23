@@ -1,6 +1,6 @@
 <!-- src/routes/projects/[projectId]/+page.svelte -->
 <script>
-  
+  import SEO from '$lib/components/SEO.svelte';
   import generic_home from '$lib/images/generic_home.png';
   import Headergen from '$lib/components/Headergen.svelte';
   import genericGotoProjects from '$lib/images/generic_goto_projects.png';
@@ -8,6 +8,15 @@
 	import { ArrowLeft } from 'lucide-svelte';
     export let data;
   </script>
+
+<SEO 
+title="Nafuna Projects - {data.project.title}"
+description="{data.project.description}"
+keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+image="/nfa_og.png"
+url="https://nafuna.tv"
+/>
+
   <div >
     <Headergen />
   </div>
@@ -20,8 +29,8 @@
       </a>
     </div>
 
-    <h1 class="font-black text-4xl">{data.project.title}</h1>
-    <p class=" text-xs prose prose-sm font-medium w-72">{@html data.project.description}</p>
+    <h1 class="font-black text-5xl">{data.project.title}</h1>
+    <p class=" text-xs prose prose-sm font-medium max-w-prose">{@html data.project.description}</p>
     
     <img src="https://api.nafuna.tv/api/files/projects/{data.project.id}/{data.project.headerImg}" alt="Header" class="p-5 rounded"/>
     <div class="rounded-lg overflow-hidden">

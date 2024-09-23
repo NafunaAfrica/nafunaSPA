@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { superForm } from 'sveltekit-superforms/client';
   import { zodClient } from "sveltekit-superforms/adapters";
   import { feedback } from '$lib/components/schema';
@@ -19,8 +20,11 @@
 
   async function handleSubmit({ result }) {
     console.log('Form submission result:', result);
-    if (result.type === 'success') {
+    if (result.type === 'redirect' || (result.type === 'failure' && result.status === 303)) {
+      goto('/successform');
+    } else if (result.type === 'success') {
       formState = 'success';
+      goto('/successform');
     } else {
       formState = 'error';
     }

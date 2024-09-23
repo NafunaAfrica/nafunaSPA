@@ -1,4 +1,5 @@
 <script>
+  import SEO from '$lib/components/SEO.svelte';
     import generic_home from '$lib/images/generic_home.png';
     import Headergen from '$lib/components/Headergen.svelte';
     import Button from '$lib/components/ui/button/button.svelte';
@@ -6,6 +7,14 @@
     export let data;
   </script>
   
+  <SEO 
+  title="Nafuna - Creative Studio"
+  description="Nafuna is a creative animation studio in Zimbabwe specializing in video production, game development and animation."
+  keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+  image="/nfa_og.png"
+  url="https://nafuna.tv"
+/>
+
   <div>
     <Headergen />
   </div>
