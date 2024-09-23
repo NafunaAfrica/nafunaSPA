@@ -34,7 +34,7 @@ url="https://nafuna.tv"
     
     <img src="https://api.nafuna.tv/api/files/projects/{data.project.id}/{data.project.headerImg}" alt="Header" class="p-5 rounded"/>
     <div class="rounded-lg overflow-hidden">
-      <p class="prose prose-sm max-w-prose">{@html data.project.Content}</p>
+      <p class="prose prose-sm max-w-prose text-left">{@html data.project.Content}</p>
     </div>
 
 

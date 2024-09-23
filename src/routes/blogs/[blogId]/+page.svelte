@@ -32,7 +32,7 @@ url="https://nafuna.tv"
     <h1 class="font-black text-5xl">{data.blog.title}</h1>
     <p class=" text-xs prose prose-sm font-medium max-w-prose">{@html data.blog.description}</p>
     
-    <img src="https://api.nafuna.tv/api/files/articles/{data.blog.id}/{data.blog.headerImg}" alt="Header" class="p-5 rounded"/>
+    <!-- <img src="https://api.nafuna.tv/api/files/articles/{data.blog.id}/{data.blog.headerImg}" alt="Header" class="p-5 rounded"/> -->
     <div class="rounded-lg overflow-hidden">
       <p class="prose prose-sm max-w-prose text-left">{@html data.blog.Content}</p>
     </div>
