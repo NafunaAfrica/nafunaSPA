@@ -2,19 +2,20 @@
   import SEO from '$lib/components/SEO.svelte';
   import ContactForm from '$lib/components/ContactForm.svelte';
   import { Card } from '$lib/components/ui/card';
+  import * as LucideIcons from 'lucide-svelte';
 
   export let data;
 
   const features = [
-    { title: 'Custom Animation', description: 'Tailored animation solutions for your unique needs.' },
-    { title: 'Video Production', description: 'High-quality video production services.' },
-    { title: 'Game Development', description: 'Engaging game development for various platforms.' },
-    { title: 'Creative Storytelling', description: 'Compelling narratives that captivate your audience.' },
-    { title: 'Motion Graphics', description: 'Eye-catching motion graphics for your projects.' },
-    { title: 'Character Design', description: 'Unique character designs for animation and games.' },
-    { title: 'Storyboarding', description: 'Detailed storyboarding to visualize your project.' },
-    { title: 'VFX Integration', description: 'Seamless visual effects integration.' },
-    { title: 'Project Consultation', description: 'Expert advice to guide your creative projects.' },
+    { title: 'Custom Animation', description: 'Tailored animation solutions for your unique needs.', icon: 'Video' },
+    { title: 'Video Production', description: 'High-quality video production services.', icon: 'Clapperboard' },
+    { title: 'Game Development', description: 'Engaging game development for various platforms.', icon: 'Gamepad2' },
+    { title: 'Creative Storytelling', description: 'Compelling narratives that captivate your audience.', icon: 'PenTool' },
+    { title: 'Motion Graphics', description: 'Eye-catching motion graphics for your projects.', icon: 'BarChart3' },
+    { title: 'Character Design', description: 'Unique character designs for animation and games.', icon: 'Users' },
+    { title: 'Storyboarding', description: 'Detailed storyboarding to visualize your project.', icon: 'Palette' },
+    { title: 'VFX Integration', description: 'Seamless visual effects integration.', icon: 'Film' },
+    { title: 'Project Consultation', description: 'Expert advice to guide your creative projects.', icon: 'HeadsetHelp' },
   ];
 </script>
 
@@ -32,6 +33,7 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
     {#each features as feature}
       <Card class="p-6">
+        <svelte:component this={LucideIcons[feature.icon]} size={24} class="mb-2 text-primary" />
         <h2 class="text-xl font-semibold mb-2">{feature.title}</h2>
         <p>{feature.description}</p>
       </Card>

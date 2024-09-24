@@ -1,12 +1,9 @@
 <script>
-  import * as Pagination from "$lib/components/ui/pagination";
   import { Button } from "$lib/components/ui/button";
-  export let blogs;
+  export let blogs; // Ensure blogs is defined as an array with a default empty value
 
-  let currentPage = 1;
-  let itemsPerPage = 3;
-  $: totalItems = blogs.length;
-  $: paginatedBlogs = blogs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  // Add a console.log to check the blogs data
+  console.log('Blogs data:', blogs);
 </script>
 
 <div class="flex flex-col items-center justify-center">
@@ -16,7 +13,7 @@
 
 {#if blogs && blogs.length > 0}
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-5 items-center justify-center">
-    {#each paginatedBlogs as blog}
+    {#each blogs as blog}
       {#if blog && blog.id && blog.title}
         <a href={`/blogs/${blog.id}`} class="block">
           <div class="relative hover:bg-gray-100">
@@ -34,22 +31,6 @@
       {/if}
     {/each}
   </div>
-
-  <Pagination.Root
-    count={totalItems}
-    perPage={itemsPerPage}
-    page={currentPage}
-    onPageChange={(p) => currentPage = p}
-  >
-    <Pagination.Content>
-      <Pagination.Item>
-        <Pagination.PrevButton />
-      </Pagination.Item>
-      <Pagination.Item>
-        <Pagination.NextButton />
-      </Pagination.Item>
-    </Pagination.Content>
-  </Pagination.Root>
 {:else}
   <p class="text-center mt-4">No blog posts available at the moment.</p>
 {/if}
@@ -57,3 +38,7 @@
 <div class="flex justify-center items-center">
   <!-- <Button variant="outline" href="/blogs">See All Blogs</Button> -->
 </div>
+
+<style>
+  /* Additional Tailwind CSS styles if needed */
+</style>

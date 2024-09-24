@@ -12,7 +12,7 @@
 <SEO 
 title="{data.blog.title}"
 description="{data.blog.description}"
-keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production, Advertising Agency, Web development, mobile app development, brand strategy, illustration, cartoons, architectural visualisations"
 image="/nfa_og.png"
 url="https://nafuna.tv"
 />
