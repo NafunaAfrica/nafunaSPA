@@ -5,6 +5,7 @@
   import ProjectGrid from "$lib/components/ProjectGrid.svelte";
   import AboutUs from "$lib/components/Aboutus.svelte";
   import Contact from "$lib/components/ContactForm.svelte";
+  import ServicesTab from "$lib/components/ServicesTab.svelte";
   import { zodClient } from "sveltekit-superforms/adapters";
   import { feedback } from '$lib/components/schema';
   import { superForm } from 'sveltekit-superforms/client';
@@ -56,6 +57,13 @@
   {#if data.aboutpage}
     <AboutUs aboutcontent={data.aboutpage} />
   {/if}
+</section>
+
+<section>
+  <div class="container mx-auto px-4 py-8 w-2/5">
+    <ServicesTab />
+  </div>
+  
 </section>
 
 <section>
