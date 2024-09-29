@@ -6,7 +6,10 @@ export async function load({ locals }) {
   try {
     console.log('Attempting to fetch blogs');
     // Ensure the collection name and method are correct
-    const blogs = await locals.adminPb.collection('articles').getFullList();
+    const blogs = await locals.adminPb.collection('articles').getFullList({
+      sort: '-created', // Sort by creation date, newest first
+    });
+    
     console.log('Blogs fetched successfully:', blogs.length);
     return {
       blogs: blogs.map(blog => ({
@@ -15,7 +18,8 @@ export async function load({ locals }) {
         description: blog.description,
         coverimg: blog.coverimg,
         headerImg: blog.headerImg,
-        content: blog.content
+        content: blog.content,
+        created: blog.created // Include the creation date
       }))
     };
   } catch (err) {

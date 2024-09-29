@@ -25,6 +25,6 @@ export const actions = {
             const {status} = e as ClientResponseError
             return message (form, { status, message: 'an error occurred'});
         }
-        redirect(303, '/')
+        redirect(303, '/campus/courses')
     }
 };

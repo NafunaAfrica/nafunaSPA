@@ -14,8 +14,9 @@
     <div class="p-10 inset-y-0 z-50 h-full">
        <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="/">Hire Us</a></li>
+        <li><a href="/blogs">Blog</a></li>
+        <li><a href="/hire-us">Hire Us</a></li>
+        <li><a href="/login">Login</a></li>
         
        </ul>
     </div>

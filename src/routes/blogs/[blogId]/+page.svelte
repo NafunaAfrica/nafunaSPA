@@ -7,12 +7,13 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
     export let data;
+    console.log(data.blog.keywords)
   </script>
 
 <SEO 
 title="{data.blog.title}"
 description="{data.blog.description}"
-keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production, Advertising Agency, Web development, mobile app development, brand strategy, illustration, cartoons, architectural visualisations"
+keywords="{data.blog.keywords}"
 image="/nfa_og.png"
 url="https://nafuna.tv"
 />

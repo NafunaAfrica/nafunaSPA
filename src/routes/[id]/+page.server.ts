@@ -11,7 +11,9 @@ export async function load({ locals, params }) {
         description: page.description,
         coverImg: page.coverimg,
         headerImg: page.headerimg,
-        Content: page.content
+        Content: page.content,
+        keywords: page.keywords,
+        section_img: page.section_img
         // Add any additional page details you want to include
       }
     };

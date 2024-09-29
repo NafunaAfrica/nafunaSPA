@@ -18,9 +18,11 @@
   }
 </script>
 <SEO 
-  title="Nafuna - Creative Studio"
+  title="Nafuna - Digital Animation, Technology & Video Marketing Studio & Agency"
   description="Nafuna is a creative animation studio in Zimbabwe specializing in video production, game development and animation."
-  keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+  keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production, Advertising Agency, Web development,
+   mobile app development, brand strategy, illustration, cartoons, architectural visualisations, Animation Agency, Video Agency, Game Development, 3D Animation, 2D Animation, 3D Modeling, 2D Modeling, 3D Animation, 2D Animation, 3D Modeling, 2D Modeling, 3D Animation, 2D Animation,
+   Brand Strategy, Content Creation, Social Media Management, Web Development, Mobile App Development"
   image="/nfa_og.png"
   url="https://nafuna.tv"
 />

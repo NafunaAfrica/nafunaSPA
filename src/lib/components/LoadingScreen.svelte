@@ -1,45 +1,23 @@
-<!-- $lib/components/LoadingScreen.svelte -->
 <script>
-    import { fade } from 'svelte/transition';
-    import { onMount } from 'svelte';
-    
-    export let isLoading;
-    let opacity = 0;
-  
-    onMount(() => {
-      const interval = setInterval(() => {
-        opacity = opacity === 0 ? 1 : 0;
-      }, 1000);
-  
-      return () => clearInterval(interval);
-    });
+  export let isLoading;
+  import { fade } from 'svelte/transition';
+</script>
 
-    $: console.log('LoadingScreen isLoading prop:', isLoading);
-  </script>
-  
-  {#if isLoading}
-    <div class="loading-screen" transition:fade>
-      <img src="/nfalogo.svg" alt="Nafuna Logo" style="opacity: {opacity};" />
-    </div>
-  {/if}
-  
-  <style>
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-  
-    img {
-      width: 150px;
-      transition: opacity 0.5s ease-in-out;
-    }
-  </style>
-  
+{#if isLoading}
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" transition:fade={{duration: 300}}>
+    <img src="/path-to-your-logo.png" alt="Nafuna Logo" class="w-32 h-32 animate-spin" />
+    <p class="text-white">Loading...</p>
+  </div>
+{/if}
+
+<style>
+  /* Add any additional styles for the loading screen here */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>

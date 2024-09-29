@@ -9,7 +9,9 @@ export const load = async ({ locals }) => {
         console.log('AdminPb auth status:', adminPb.authStore.isValid);
 
         const projects = await adminPb.collection('projects').getFullList();
-        const blogs = await adminPb.collection('articles').getFullList();
+        const blogs = await adminPb.collection('articles').getFullList({
+            sort: '-created',
+        });
         console.log('Fetched blogs:', blogs);
         const homepages = await adminPb.collection('pages').getOne('home-page-infos', {
             expand: 'relField1,relField2.subRelField',
@@ -37,7 +39,8 @@ export const load = async ({ locals }) => {
               title: blog.title,
               description: blog.description,
               coverimg: blog.coverimg,
-              Content: blog.content
+              Content: blog.content,
+              created: blog.created
           })),
             homepage: homepages ? {
                 title: homepages.title,
