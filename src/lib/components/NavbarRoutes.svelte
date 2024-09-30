@@ -9,11 +9,25 @@
   import * as Avatar from "$lib/components/ui/avatar";
   import { page } from "$app/stores";
   import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "$lib/components/ui/dropdown-menu";
+  import { onMount } from 'svelte';
+  import PocketBase from 'pocketbase';
+
+  const pb = new PocketBase('https://api.nafuna.tv');
 
   console.log('$page.data:', $page.data);
   $: isAuthenticated = $page.data.user !== null && $page.data.user !== undefined;
   console.log('User data:', $page.data.user);
   console.log('isAuthenticated:', isAuthenticated);
+
+  onMount(() => {
+    const logoutForm = document.querySelector('form[action="/?/logout"]');
+    if (logoutForm) {
+      logoutForm.addEventListener('submit', () => {
+        // Clear the client-side auth store
+        pb.authStore.clear();
+      });
+    }
+  });
 </script>
 
 <div class="flex items-center justify-between w-full p-3 font-quicksand">

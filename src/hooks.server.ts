@@ -10,41 +10,35 @@ const protectedRoutes = ['/campus/courses'];
 export async function handle({ event, resolve }) {
     const { locals, request, url } = event;
 
-    // Create instances for admin and regular user operations
     locals.pb = new PocketBase('https://api.nafuna.tv');
     locals.adminPb = new PocketBase('https://api.nafuna.tv');
 
-    // Authenticate the adminPb instance with environment variables
     await locals.adminPb.admins.authWithPassword(POCKETBASE_ADMIN_EMAIL, POCKETBASE_ADMIN_PASSWORD);
-console.log('Admin authenticated:', locals.adminPb.authStore.isValid);
-    // Load the store data from the request cookie string
+
+    // Load the auth store from the cookie
     locals.pb.authStore.loadFromCookie(request.headers.get('cookie') || '');
 
     try {
-        // Get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
         if (locals.pb.authStore.isValid) {
             await locals.pb.collection('users').authRefresh();
+            event.locals.user = locals.pb.authStore.model;
         }
-        locals.user = locals.pb.authStore.model;
-        locals.pb.authStore.save();
-
-        console.log('Authentication status:', locals.user ? 'Authenticated' : 'Not authenticated');
-    } catch (err) {
-        // Clear the auth store on failed refresh
+    } catch (_) {
         locals.pb.authStore.clear();
-        locals.user = undefined;
-        console.log('Authentication failed:', err);
+        event.locals.user = null;
     }
 
-    // Check if the current URL path is a protected route and the user is not authenticated
-    // if (protectedRoutes.some(route => url.pathname.startsWith(route)) && !locals.user) {
-    //     return redirect(303, '/login');
-    // }
+    // Handle protected routes
+    if (protectedRoutes.some(route => url.pathname.startsWith(route))) {
+        if (!event.locals.user) {
+            throw redirect(303, '/login');
+        }
+    }
 
     const response = await resolve(event);
 
-    // Send back the default 'pb_auth' cookie to the client with the latest store state
-    response.headers.append('set-cookie', locals.pb.authStore.exportToCookie());
+    // Set the cookie in the response
+    response.headers.set('set-cookie', locals.pb.authStore.exportToCookie({ secure: false }));
 
     return response;
 }

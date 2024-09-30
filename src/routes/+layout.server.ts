@@ -1,7 +1,9 @@
-export async function load({ fetch }) {
-    // Perform any necessary data fetching here
-    return {
-      pageLoaded: true
-    };
-  }
-  
+				import { redirect } from '@sveltejs/kit';
+
+				export const load = async ({ locals }) => {
+					const { user } = locals;
+
+					return {
+						user
+					};
+				};
