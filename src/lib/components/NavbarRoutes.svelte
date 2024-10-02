@@ -11,6 +11,12 @@
   import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "$lib/components/ui/dropdown-menu";
   import { onMount } from 'svelte';
   import PocketBase from 'pocketbase';
+	import { goto } from "$app/navigation";
+  import Loader2 from 'lucide-svelte/icons/loader';
+
+  let isLoggingOut = false;
+
+
 
   const pb = new PocketBase('https://api.nafuna.tv');
 
@@ -18,6 +24,22 @@
   $: isAuthenticated = $page.data.user !== null && $page.data.user !== undefined;
   console.log('User data:', $page.data.user);
   console.log('isAuthenticated:', isAuthenticated);
+
+  async function handleLogout() {
+    isLoggingOut = true;
+    try {
+      const response = await fetch('/logout', { method: 'POST' });
+      if (response.ok) {
+        pb.authStore.clear();
+        await goto('/login');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      isLoggingOut = false;
+    }
+  }
+
 
   onMount(() => {
     const logoutForm = document.querySelector('form[action="/?/logout"]');
@@ -49,9 +71,15 @@
   </div>
 
   <nav class="flex-1 ml-4">
-    <ul class="flex justify-end items-center space-x-4 p-5">
-      <li><a href="/" class="text-sm text-white hover:text-black transition-colors font-quicksand">Home</a></li>
+    <ul class="flex justify-end items-center space-x-4 p-6 gap-5">
+      <li><a href="/" class="text-sm text-white hover:text-orange-400 transition-colors font-quicksand">Home</a></li>
 
+      
+      <!-- <li><a href="/campus" class="text-white hover:text-black">Campus</a></li> -->
+      <li><a href="/_nafuna_campus_" class="text-white hover:text-orange-400">Campus</a></li>
+      <li><a href="/blogs" class="text-white hover:text-orange-400">Blog</a></li>
+
+<li>
       <DropdownMenu>
         <DropdownMenuTrigger class="dropdown-menu-trigger flex items-center gap-1 px-4 py-2 rounded-md transition-colors hover:bg-gray-100 text-white hover:text-black">
           Services
@@ -68,9 +96,8 @@
           <MegaMenuItem title="The Retainai plan" description="Flexible and customisable retaina plan." href="/services/nafuna_retainer" />
         </DropdownMenuContent>
       </DropdownMenu>
+</li>
 
-      <!-- <li><a href="/campus" class="text-white hover:text-black">Campus</a></li> -->
-      <li><a href="/blogs" class="text-white hover:text-black">Blog</a></li>
       <li>
         <Button href="/hire-us" class="px-4 py-2 rounded-md text-white bg-orange-500 hover:bg-orange-400 transition-colors">
           Hire Us
@@ -81,21 +108,29 @@
 
   <div class="flex items-center space-x-4">
     {#if isAuthenticated}
-      <Avatar.Root>
-        <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <Avatar.Fallback>CN</Avatar.Fallback>
-      </Avatar.Root>
-      <form method="post" action="/?/logout">
-        <Button size="sm" variant="outline">
-          <LogOut />
-          Logout
-        </Button>
-      </form>
+  <Avatar.Root>
+    <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+    <Avatar.Fallback>CN</Avatar.Fallback>
+  </Avatar.Root>
+  <Button on:click={handleLogout} disabled={isLoggingOut}>
+    {#if isLoggingOut}
+      <Loader2 class="mr-2 h-4 w-4 animate-spin" />
+      <span>Logging out...</span>
     {:else}
-      <Button href="/login" size="sm" variant="outline">
-        <LogIn />
-        Login
-      </Button>
+      <LogOut class="mr-2 h-4 w-4" />
+      <span>Logout</span>
     {/if}
+  </Button>
+{:else}
+  <Button href="/login" size="sm" variant="outline">
+    <LogIn />
+    Login
+  </Button>
+{/if}
   </div>
+
+ 
+
+
+
 </div>

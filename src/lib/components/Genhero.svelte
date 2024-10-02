@@ -16,7 +16,7 @@
   </div>
   <div class="hero-content relative z-10 text-center px-4 text-white">
     <div>
-      <h1 class="text-2xl md:text-4xl font-bold font-quicksand">{herocontent.title}</h1>
+      <h1 class="text-2xl md:text-4xl font-bold font-quicksand text-center justify-center">{herocontent.title}</h1>
     </div>
 
     <div class="prose w-full md:w-96">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="mt-4">
-      <Button variant="outline" on:click={() => (open = true)}>Learn More</Button>
+      <Button href={herocontent.route} variant="outline">Learn More</Button>
     </div>
   </div>
 

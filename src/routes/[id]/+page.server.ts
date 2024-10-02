@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 
-/** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
   try {
     const page = await locals.adminPb.collection('pages').getOne(params.id);
@@ -10,11 +9,14 @@ export async function load({ locals, params }) {
         title: page.title,
         description: page.description,
         coverImg: page.coverimg,
-        headerImg: page.headerimg,
-        Content: page.content,
+        sectionImg: page.section_img,
+        content: page.content,
+        contentAlt: page.content_alt,
+        title2: page.title2,
+        description2: page.description2,
         keywords: page.keywords,
-        section_img: page.section_img
-        // Add any additional page details you want to include
+        route: page.route,
+        pageFiles: page.pagefiles
       }
     };
   } catch (err) {
