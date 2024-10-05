@@ -9,17 +9,17 @@
 
 <section class="relative h-screen overflow-hidden flex items-center justify-center">
   <div 
-    class="absolute inset-0 w-full h-full bg-cover bg-center z-0" 
+    class="absolute inset-0 w-full h-full bg-cover bg-center z-0 gap-5" 
     style="background-image: url(https://api.nafuna.tv/api/files/pages/{herocontent.id}/{herocontent.coverImg})"
   >
     <div class="absolute inset-0 bg-black opacity-80"></div>
   </div>
-  <div class="hero-content relative z-10 text-center px-4 text-white">
-    <div>
-      <h1 class="text-2xl md:text-4xl font-bold font-quicksand text-center justify-center">{herocontent.title}</h1>
+  <div class="hero-content relative z-10 text-center px-4 text-white gap-5">
+    <div class=" justify-center mx-auto flex items-center gap-5">
+      <h1 class="text-2xl md:text-4xl font-bold font-quicksand text-center justify-center mx-auto flex items-center">{herocontent.title}</h1>
     </div>
 
-    <div class="prose w-full md:w-96">
+    <div class="prose w-full md:w-96 mx-auto">
       <h1 class="text-xs md:text-sm font-thin prose text-center">{herocontent.description}</h1>
     </div>
 

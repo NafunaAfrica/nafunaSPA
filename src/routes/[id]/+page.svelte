@@ -3,6 +3,7 @@
   import Genhero from '$lib/components/Genhero.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
   import { ArrowLeft } from 'lucide-svelte';
+  import { Separator } from "$lib/components/ui/separator";
 
   export let data;
 </script>
@@ -28,14 +29,14 @@
     </a>
   </div>
 
-  {#if data.page.coverImg}
-    <img src={`https://api.nafuna.tv/api/files/pages/${data.page.id}/${data.page.coverImg}`} alt="Cover" class="p-5 rounded-lg"/>
-  {/if}
+
 
   <div class="rounded-lg overflow-hidden">
-    <h1 class="font-black text-5xl p-5 text-center">{data.page.title}</h1>
-    <p class=" text-xs prose prose-sm font-medium max-w-prose p-5 text-center">{data.page.description}</p>
-    <div class="prose prose-sm max-w-prose p-5 text-start">{@html data.page.content}</div>
+   <div><h1 class="font-black text-5xl p-5 text-center text-orange-400">{data.page.title}</h1></div> 
+   
+    <div><p class=" text-sm prose prose-sm font-medium max-w-prose p-5 text-center justify-center mx-auto text-gray-500">{data.page.description}</p></div>
+    <div><Separator class="my-4" /></div> 
+    <div class="prose prose-sm max-w-prose p-5 text-start mx-auto">{@html data.page.content}</div>
   </div>
 
   {#if data.page.sectionImg}
@@ -48,18 +49,7 @@
     <div class="prose prose-sm max-w-prose text-start">{@html data.page.contentAlt}</div>
   {/if}
 
-  {#if data.page.pageFiles && data.page.pageFiles.length > 0}
-    <div class="mt-8">
-      <h3>Additional Files</h3>
-      <ul>
-        {#each data.page.pageFiles as file}
-          <li>
-            <a href={`https://api.nafuna.tv/api/files/pages/${data.page.id}/${file}`} target="_blank" rel="noopener noreferrer">{file}</a>
-          </li>
-        {/each}
-      </ul>
-    </div>
-  {/if}
+
 </main>
 
 <div class="flex flex-col justify-center items-center gap-5 p-5">

@@ -48,7 +48,7 @@
     <img src="/nfalogo.svg" alt="About Us" class="flex w-32 h-auto items-center justify-center mx-auto" />
     <h1 class="py-5 text-center text-4xl font-bold">Contact Us</h1>
     <p class="prose max-w-prose">To get in touch with Nafuna and the studio, please use all the channels available. You can use the form to the right or you can also use 
-      Whastapp platform. You can also use our contact center to the lower left to speak to a representative. 
+      Whastapp <span class=" font-bold">+263 772 409 437.</span> You can also use our contact center to the lower right to speak to a representative. 
     </p>
   </div>
 {#if formState === 'success'}

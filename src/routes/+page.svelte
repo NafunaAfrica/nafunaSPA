@@ -33,7 +33,7 @@
   description="Nafuna is a creative animation studio in Zimbabwe specializing in video production, game development and animation. We create original content for the African audience, delivering rich multimedia experiences."
   keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production, Advertising Agency, Web development,
    mobile app development, brand strategy, illustration, cartoons, architectural visualisations, Animation Agency, Video Agency, Game Development, 3D Animation, 2D Animation, 3D Modeling, 2D Modeling, 3D Animation, 2D Animation, 3D Modeling, 2D Modeling, 3D Animation, 2D Animation,
-   Brand Strategy, Content Creation, Social Media Management, Web Development, Mobile App Development"
+   Brand Strategy, Content Creation, Social Media Management, Web Development, Mobile App Development, tonight with zororo, winky D vashakabvu,"
   image="/nfa_og.png"
   url="https://nafuna.tv"
 />

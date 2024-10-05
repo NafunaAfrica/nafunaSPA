@@ -6,7 +6,17 @@
   import genericGotoProjects from '$lib/images/generic_goto_projects.png';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
+  import { buttonVariants } from "$lib/components/ui/button";
+  import Contact from "$lib/components/ContactForm.svelte";
+  import { zodClient } from "sveltekit-superforms/adapters";
+  import { feedback } from '$lib/components/schema';
+  import { superForm } from 'sveltekit-superforms/client';
     export let data;
+
+    const form = superForm(data.form, {
+    validators: zodClient(feedback)
+  });
+  const { form: formData, errors, enhance } = form;
   </script>
 
 <SEO 
@@ -40,13 +50,17 @@ url="https://nafuna.tv"
 
     <div class="flex justify-center items-center gap-5 p-5">
 
-      <div class="rounded w-64">
-        <a href="/"><img src="{generic_home}" alt="Home" class="p-5 rounded"/></a>
+      <div class="rounded w-96">
+        <a href="/" class={buttonVariants({ variant: "ghost" })}><img src="{generic_home}" alt="Home" class="p-5 rounded w-full"/></a>
         <!-- Add any additional project details you want to display -->
       </div>
     </div>  
     
   </main>
+
+  <div class="flex justify-center items-center gap-5 p-5">
+    <Contact {data} />
+  </div>
 
 <div class="flex justify-center items-center gap-5 p-5">
 

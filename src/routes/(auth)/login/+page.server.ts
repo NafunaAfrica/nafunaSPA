@@ -22,7 +22,7 @@ export const actions = {
         try {
             await pb.collection('users').authWithPassword(form.data.email, form.data.password)
         } catch (e) {
-            const {status} = e as ClientResponseError
+            const { status } = e as ClientResponseError;
             return message (form, { status, message: 'an error occurred'});
         }
         redirect(303, '/campus/courses')
