@@ -6,6 +6,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import { ModeWatcher } from "mode-watcher";
 	import '@fontsource-variable/quicksand';
+	import { Toaster } from "$lib/components/ui/sonner";
 	
 	// let isLoading = false;
 
@@ -15,6 +16,7 @@
 	// 	isLoading = false;
 	// });
 </script>
+<Toaster richColors closeButton theme="dark"/>
 
 <div class="h-full">
 	<div class="h-[80px] absolute inset-y-0 w-full z-50">

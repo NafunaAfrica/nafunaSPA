@@ -6,6 +6,7 @@
   import genericGotoProjects from '$lib/images/generic_goto_projects.png';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
     export let data;
     console.log(data.blog.keywords)
   </script>
@@ -50,6 +51,7 @@ url="https://nafuna.tv"
   </main>
 
 <div class="flex justify-center items-center gap-5 p-5">
+  <ContactForm {data} />
 
   <Button class="bg-primary" href="/hire-us">
     Hire Us!

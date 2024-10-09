@@ -5,6 +5,7 @@
     import { ArrowLeft } from 'lucide-svelte';
     import ProjectGrid from '$lib/components/ProjectGrid.svelte';
     import { ShieldQuestion } from 'lucide-svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
 
     export let data;
   
@@ -84,6 +85,10 @@
       <p>Loading service details...</p>
     {/if}
   </main>
+  <div class="p-5 ">
+
+    <ContactForm {data} />
+  </div>
   
   <div class="flex justify-center items-center gap-5 p-5">
     <Button class="bg-primary" href="/hire-us">

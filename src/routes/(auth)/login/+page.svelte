@@ -6,12 +6,20 @@
     
     import { superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+    import { toast } from "svelte-sonner";
     
     export let data;
     const form = superForm(data.form,{
-        validators: zodClient(loginSchema)
+        validators: zodClient(loginSchema),
+        onUpdated({ form }){
+            if (form.message) {
+                if(!form.valid){
+                    toast.error(form.message);
+                }
+            }
+        }
     });
-    const { form: formData, enhance, delayed, errors } = form;
+    const { form: formData, enhance, delayed, errors, submitting } = form;
 </script>
 <div>
     <h1 class="py-5 text-center text-2xl font-semibold">Welcome to Nafuna Accounts</h1>
