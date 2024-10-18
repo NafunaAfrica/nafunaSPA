@@ -19,7 +19,8 @@ export async function load({ locals, params }) {
         description: project.description,
         coverImg: project.coverimg,
         headerImg: project.headerimg,
-        Content: project.content
+        Content: project.content,
+        keywords: project.keywords,
         // Add any additional project details you want to include
       }
     };

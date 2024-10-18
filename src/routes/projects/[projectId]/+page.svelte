@@ -22,7 +22,7 @@
 <SEO 
 title="Nafuna Projects - {data.project.title}"
 description="{data.project.description}"
-keywords="video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
+keywords="{data.project.keywords}, video production, animation, creative studio, animation studio, animation studio Zimbabwe, Creative Agency, Nqo Mlilo, Nqobizitha Mlilo, Enqore, Nafuna, explainer videos, Documentary production"
 image="/nfa_og.png"
 url="https://nafuna.tv"
 />

@@ -12,7 +12,8 @@ export async function load({ locals }) {
         description: project.description,
         coverImg: project.coverimg,
         headerImg: project.headerImg,
-        Content: project.content
+        Content: project.content,
+        keywords: project.keywords
       }))
     };
   } catch (err) {
