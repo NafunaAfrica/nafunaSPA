@@ -35,7 +35,7 @@ url="https://nafuna.tv"
     <p class=" text-xs prose prose-sm font-medium max-w-prose">{@html data.blog.description}</p>
     
     <img src="https://api.nafuna.tv/api/files/articles/{data.blog.id}/{data.blog.coverImg}" alt="Header" class="p-5 rounded"/>
-    <div class="rounded-lg ">
+    <div class="rounded-lg overflow-hidden p-4">
       <p class="prose prose-sm max-w-prose text-left whitespace-normal">{@html data.blog.Content}</p>
     </div>
 
